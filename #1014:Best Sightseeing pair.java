@@ -2,7 +2,7 @@
   LINK: https://leetcode.com/problems/best-sightseeing-pair/submissions/
   Approach 1: ( Naive Approach)
               iterate the array: i
-              And find the best value for it.
+              And find the best value i.e max value for it.
               O( N*N )
               
   Approach 2: We could make an array that store the best value which we can get at every index
