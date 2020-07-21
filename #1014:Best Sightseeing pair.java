@@ -39,7 +39,7 @@ class Solution {
     {
         int ans=0;
         
-        int max=0, c=0;
+        int max=0;
         for(int i=arr.length-1;i>0;i--, max--)
         {
             max= Math.max(max, arr[i]);
