@@ -1,5 +1,6 @@
 /*
-    Approach : Question was a adhoc as there was no 
+    Approach : Question was a adhoc (as far as i think, it can be wrong) as there was no specific algo that came to my mind.
+    ALGORITHM:
                1. A possible soln needs to be present in either of the array possibly both, given for every valid pos i. So arr1[0] and arr2[0] are valid candidates.
                2. As we need to give the minimun rotations we will store the counts that the candidate has occured in the array 1: arr1 and array 2: arr2.
                3. There is a possibility that there is no correct ans in that case we have taken two booleans that are true till there candidate remains a possible ans.
