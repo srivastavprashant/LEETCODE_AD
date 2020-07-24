@@ -11,24 +11,13 @@
                Space Complexity O(1)
 
 */
-
 class Solution {
     public int minDominoRotations(int[] arr1, int[] arr2) 
     {
         int candidate1= arr1[0], candidate2= arr2[0];
-        int count1[], count2[];
-        
-        if(candidate1== candidate2)
-        {
-            count1= new int[]{0, 0};
-            count2= new int[]{0, 0};
-        }
-        
-        else
-        {
-            count1= new int[]{1, 0};
-            count2= new int[]{0, 1};
-        }
+
+        int[] count1= new int[]{candidate2==candidate1?0:1, 0};
+        int[] count2= new int[]{0, candidate2==candidate1?0:1};
         
         boolean bool1= true, bool2= true;
         
