@@ -1,6 +1,16 @@
 // #684. Redundant Connection
 
-
+/**
+So, we have a graph which is basically a tree and one additional edge has been added to it.
+    And obviously if an additional edges was added then it would have resulted in a cycle.
+    
+    Now we are asked to return the edge that caused that cycle or that redundant edge which destroyed the properties of tree.
+    So, the very basic thing which comes in mind is to find that cycle i.e. find all the nodes involved in cycle 
+    and then maybe we can iterate through the whole edges array given to us and find the edges which joins the nodes of the cycle.
+    
+    Depth first search implementation 
+    time complexity : O(edges+ nodes) or the complexity of the dfs. Though linear but lets try the union find technique too.
+*/
 
 class Solution 
 {
