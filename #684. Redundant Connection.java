@@ -71,3 +71,66 @@ class Solution
         return new int[]{};        
     }
 }
+
+// Approach 2: Union find 
+class Solution 
+{
+    public int[] findRedundantConnection(int[][] edges) 
+    {
+        UnionFind dsu= new UnionFind(edges.length+1);
+        
+        for(int[] i: edges)
+        {
+            if(dsu.isConnected(i[0], i[1])) return i;
+            
+            dsu.union(i[0], i[1]);
+        }
+        
+        return new int[]{};        
+    }
+}
+
+class UnionFind
+{
+    int[] par, rank;
+    
+    UnionFind(int size)
+    {
+        par= new int[size];
+        rank= new int[size];
+        
+        for(int i=0;i<size;i++)
+            par[i]= i;
+    }
+    
+    void union(int a, int b)
+    {
+        while(par[a]!= a)
+            a= par[a];
+        
+        while(par[b]!= b)
+            b= par[b];
+        
+        // union by rank
+        if(rank[a]> rank[b])
+            par[b]= a;
+        else if(rank[a]< rank[b])
+            par[a]= b;
+        else 
+        {
+            par[b]= a;
+            rank[a]++;
+        }
+    }
+    
+    boolean isConnected(int a, int b)
+    {
+        while(par[a]!= a)
+            a= par[a];
+        
+        while(par[b]!= b)
+            b= par[b];
+        
+        return a==b;
+    }
+}
