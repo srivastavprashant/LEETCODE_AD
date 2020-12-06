@@ -1,7 +1,8 @@
 #959. Regions Cut By Slashes
 
 
-Approach: (Depth first search)
+Approach: (Depth first search) 
+    
 class Solution 
 {
     static void DFSREC(char[][] grid, boolean[][][] visited, int row, int col, int type)
@@ -63,5 +64,80 @@ class Solution
         }
         
         return regions;
+    }
+}
+
+Approach 2: Union find 
+Intuition: we need to find the number of regions or we can say number of different disjoint sets
+Union by rank is used to make the code more optimized.
+class DSU
+{
+    int[] par;
+    int[] rank;
+    DSU(int size)
+    {
+        par= new int[size];
+        for(int i=0;i<size;i++)
+            par[i]= i;
+        
+        rank= new int[size]; 
+    }
+    public void union(int a, int b)
+    {
+        while(par[a]!= a)
+            a= par[a];
+            
+        while(par[b]!= b)
+            b= par[b];
+            
+        if(rank[a]> rank[b])
+            par[b]= a;
+        else if(rank[a]< rank[b])
+            par[a]= b;
+        else
+        { par[b]= a; rank[a]++; }
+    }
+
+    public int find(int x) {
+        if (par[x] != x) par[x] = find(par[x]);
+        return par[x];
+    }
+}
+class Solution {
+    public int regionsBySlashes(String[] grid) {
+        int N = grid.length;
+        DSU dsu = new DSU(4 * N * N);
+        for (int r = 0; r < N; ++r)
+            for (int c = 0; c < N; ++c) {
+                int root = 4 * (r * N + c);
+                char val = grid[r].charAt(c);
+                if (val != '\\') {
+                    dsu.union(root + 0, root + 1);
+                    dsu.union(root + 2, root + 3);
+                }
+                if (val != '/') {
+                    dsu.union(root + 0, root + 2);
+                    dsu.union(root + 1, root + 3);
+                }
+
+                // north south
+                if (r + 1 < N)
+                    dsu.union(root + 3, (root + 4 * N) + 0);
+                if (r - 1 >= 0)
+                    dsu.union(root + 0, (root - 4 * N) + 3);
+                // east west
+                if (c + 1 < N)
+                    dsu.union(root + 2, (root + 4) + 1);
+                if (c - 1 >= 0)
+                    dsu.union(root + 1, (root - 4) + 2);
+            }
+
+        int ans = 0;
+        for (int x = 0; x < 4 * N * N; ++x) {
+            if (dsu.find(x) == x)
+                ans++;
+        }
+
+        return ans;
     }
 }
