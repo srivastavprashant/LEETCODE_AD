@@ -1,6 +1,6 @@
 #1615. Maximal Network Rank
 
-
+// Approach 1
 class Solution {
     public int maximalNetworkRank(int n, int[][] roads) 
     {
@@ -72,5 +72,33 @@ class Solution {
             
             return max+ degree[max_city]-1;
         }
+    }
+}
+
+// Approach 2
+class Solution {
+    public int maximalNetworkRank(int n, int[][] roads) 
+    {
+        int[] degree= new int[n];
+        boolean[][] adjacency_matrix= new boolean[n][n];
+        for(int[] road: roads)
+        {
+            degree[road[0]]++;
+            degree[road[1]]++;
+            adjacency_matrix[road[0]][road[1]]= true;
+            adjacency_matrix[road[1]][road[0]]= true;
+        }
+        
+        int max= -1;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(i== j) continue;
+                max= Math.max(max, degree[i]+ degree[j]+ (adjacency_matrix[i][j]? -1: 0));
+            }
+        }
+        
+        return max;
     }
 }
