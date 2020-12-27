@@ -54,3 +54,51 @@ class Solution
 }
 
 // predicate function: binary search
+
+class Solution 
+{
+    public int minimumEffortPath(int[][] heights) 
+    {
+        //System.out.println(heights.length+" "+heights[0].length);
+        int[][] visited= new int[heights.length][heights[0].length];
+        for(int[] i: visited)
+            Arrays.fill(i, Integer.MAX_VALUE);
+        
+        visited[0][0]= 0;
+        int cost= 0;
+        while(visited[heights.length-1][heights[0].length-1]>0)
+        {
+            int min= Integer.MAX_VALUE, row= -1, col= -1;
+            for(int i=0;i<visited.length;i++)
+            {
+                for(int j=0;j<visited[0].length;j++)
+                    if(visited[i][j]>=0 && min> visited[i][j])
+                    {
+                        row= i;
+                        col= j;
+                        min= visited[i][j];
+                    }
+            }
+            
+            //System.out.println(row+" "+col+" "+min);
+            cost= Math.max(cost, min);
+            if(row+1< heights.length && visited[row+1][col]>=0) 
+                visited[row+1][col]= Math.min(visited[row+1][col], Math.abs(heights[row][col]- heights[row+1][col]));
+            
+            if(row-1>-1 && visited[row-1][col]>=0)
+                visited[row-1][col]= Math.min(visited[row-1][col], Math.abs(heights[row][col]- heights[row-1][col]));
+            
+            if(col+1< heights[0].length && visited[row][col+1]>=0)
+                visited[row][col+1]= Math.min(visited[row][col+1], Math.abs(heights[row][col]- heights[row][col+1]));
+            
+            if(col-1>-1 && visited[row][col-1]>=0)
+                visited[row][col-1]= Math.min(visited[row][col-1], Math.abs(heights[row][col]- heights[row][col-1]));
+            
+            visited[row][col]= -1;
+        }
+        
+        return cost;
+    }
+}
+
+// dijkstra's algorithm: without priorityQueue.
