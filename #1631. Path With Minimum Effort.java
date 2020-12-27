@@ -102,3 +102,71 @@ class Solution
 }
 
 // dijkstra's algorithm: without priorityQueue.
+
+
+class Solution 
+{
+    int cos= 0, r= 1, c= 2;
+    public int minimumEffortPath(int[][] heights) 
+    {
+        int[][] cost= new int[heights.length][heights[0].length];
+        PriorityQueue<int[]> q= new PriorityQueue<>((int[] a, int[] b) -> (a[cos]- b[cos]));
+        for(int i=0;i<heights.length;i++)
+        {
+            for(int j=0;j<heights[0].length;j++)
+            {
+                if(i+j ==0) 
+                    q.add(new int[]{0, 0, 0});
+                else    
+                {
+                    q.add(new int[]{Integer.MAX_VALUE, i, j});
+                    cost[i][j]= Integer.MAX_VALUE;
+                }
+            }
+        }
+        
+        int ans= 0;
+        while(true)
+        {
+            int[] candidate= new int[]{Integer.MAX_VALUE, -1, -1};
+            while(true){
+                candidate= q.poll();
+                if(candidate[cos]== cost[candidate[r]][candidate[c]])
+                    break;
+            }
+            
+            int row= candidate[r];
+            int col= candidate[c];
+            ans= Math.max(ans, candidate[cos]);
+            if(row== heights.length-1 && col== heights[0].length-1) break;
+            
+            if(row+1< heights.length && cost[row+1][col]> Math.abs(heights[row][col]- heights[row+1][col]))
+            {
+                cost[row+1][col]= Math.abs(heights[row][col]- heights[row+1][col]);
+                q.add(new int[]{cost[row+1][col], row+1, col});
+            }
+            
+            if(row-1>-1 && cost[row-1][col]> Math.abs(heights[row][col]- heights[row-1][col]))
+            {
+                cost[row-1][col]= Math.abs(heights[row][col]- heights[row-1][col]);
+                q.add(new int[]{cost[row-1][col], row-1, col});
+            }
+            
+            if(col+1< heights[0].length && cost[row][col+1]> Math.abs(heights[row][col]- heights[row][col+1]))
+            {
+                cost[row][col+1]= Math.abs(heights[row][col+1]- heights[row][col]);
+                q.add(new int[]{cost[row][col+1], row, col+1});
+            }
+            
+            if(col-1>-1 && cost[row][col-1]> Math.abs(heights[row][col]- heights[row][col-1]))
+            {
+                cost[row][col-1]= Math.abs(heights[row][col-1]- heights[row][col]);
+                q.add(new int[]{cost[row][col-1], row, col-1});
+            }
+        }
+        
+        return ans;
+    }
+}
+
+// dijkstra's algorithm with priority queue with lazy deletion.
