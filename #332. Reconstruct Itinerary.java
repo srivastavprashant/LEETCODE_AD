@@ -87,3 +87,13 @@ class Solution
         return ans;
     }
 }
+
+/* 
+  Other possibilities:
+  1. Fleury's Algorithm: which basically uses a bridge detecting algorithm to find if we choose this edge will it lead to undercoverage or fomally speaking 
+  if this edge is chosen will the graph get disconnected or not 
+    So time complexity of this algorithm will be O(edges^2): as we traverse all the edges and while choosing each edge we check is this makes the grpah disconnected or 
+    is this edge an bridge or not.
+   
+  2. Hierholzer's algorithm: //TODO
+  */
