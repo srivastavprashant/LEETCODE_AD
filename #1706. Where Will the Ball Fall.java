@@ -206,3 +206,60 @@ class Solution
         }
     }
 }
+
+
+// Approach 2: DFS+ memoization
+class Solution 
+{
+    int[][][] memo;
+    int[] ans;
+    int n, m;
+    
+    int DFSREC(int[][] grid, int row, int col, boolean upper, boolean[][][] visited)
+    {
+        if(row== n) return col;
+        else if(col<0 || col== m) return -1;
+        else if(memo[row][col][upper?0:1]!= -1) return memo[row][col][upper?0:1];
+        else if(visited[row][col][upper?0:1]) return -1;
+        else
+        {
+            visited[row][col][upper?0:1]= true;
+            int ans= -1;
+            if(grid[row][col]== 1)
+            {
+                if(upper && col+1!= m)
+                    ans= DFSREC(grid, row, col+1, grid[row][col+1]== -1, visited);
+                else if(!upper)
+                    ans= DFSREC(grid, row+1, col, true, visited);
+            }
+            else
+            {
+                if(upper && col-1 >-1)
+                    ans= DFSREC(grid, row, col-1, grid[row][col-1]== 1, visited);
+                else if(!upper)
+                    ans= DFSREC(grid, row+1, col, true, visited);
+            }
+            
+            memo[row][col][upper? 0: 1]= ans;
+            visited[row][col][upper? 0: 1]= false;
+            return ans;
+        }
+    }
+    
+    public int[] findBall(int[][] grid) 
+    {
+        n= grid.length;
+        m= grid[0].length;
+        memo= new int[n][m][2];
+        ans= new int[m];
+        for(int[][] i: memo)
+            for(int[] j: i)
+                Arrays.fill(j, -1);
+        
+        boolean[][][] visited= new boolean[n][m][2];
+        for(int i=0;i<m;i++)
+            ans[i]= DFSREC(grid, 0, i, true, visited);
+        
+        return ans;
+    }
+}
