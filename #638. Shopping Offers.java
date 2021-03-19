@@ -14,7 +14,8 @@ class Solution
     int ans;
     void call(List<Integer> price, List<List<Integer>> special, List<Integer> needs, int cost)
     {
-        if(empty(needs)) ans= Math.min(ans, cost);
+        if(cost>= ans) return;
+        else if(empty(needs)) ans= Math.min(ans, cost);
         else
         {
             boolean found= false;
