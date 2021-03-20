@@ -47,3 +47,24 @@ class Solution
         return call(pairs, Integer.MIN_VALUE);
     }
 }
+
+// greedy
+class Solution {
+    public int findLongestChain(int[][] pairs) 
+    {
+        Arrays.sort(pairs, (a, b)-> (a[1]- b[1]));
+        int start= Integer.MIN_VALUE;
+        
+        int ans= 0;
+        for(int i=0;i<pairs.length;i++)
+        {
+            ans++;
+            int val= pairs[i][1];
+            while(i!= pairs.length && pairs[i][0]<= val)
+                i++;
+            i--;
+        }
+        
+        return ans;
+    }
+}
