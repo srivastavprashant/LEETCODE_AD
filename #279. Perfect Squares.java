@@ -33,3 +33,41 @@ class Solution {
         }
     }
 }
+
+
+// Lagrange's four square theorem.
+class Solution {
+    HashSet<Integer> square;
+    public int numSquares(int n) {
+        square= new HashSet<>();
+        call(n);
+        
+        if(square.contains(n)) return 1;
+        else if(twoSquare(n)) return 2;
+        else if(threeSquare(n)) return 3;
+        else return 4;
+    }
+    
+    private void call(int n) {
+        for(int i=1;i*i<=n;i++)
+            square.add(i*i);
+    }
+    
+    private boolean twoSquare(int n) {
+        for(int i: square) {
+            if(square.contains(n-i)) return true;
+        }
+        
+        return false;
+    }
+    
+    private boolean threeSquare(int n) {
+        for(int i: square) {
+            int val= n-i;
+            if(twoSquare(val)) return true;
+        }
+        
+        return false;
+    }
+    
+}
