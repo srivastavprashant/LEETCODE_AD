@@ -20,3 +20,22 @@ class Solution {
         return max+1;
     }
 }
+
+// We can just use an array as a map that would be much faster and easier to implement.
+class Solution {
+    public int longestArithSeqLength(int[] arr) {
+        int[][] map= new int[arr.length][1001];
+        int max= 0;
+        
+        for(int i= arr.length-1;i>=0;i--) {
+            for(int j= i+1;j< arr.length;j++) {
+                int diff= arr[i]- arr[j];
+                diff+= 500;
+                map[i][diff]= Math.max(map[i][diff], map[j][diff]+1);
+                max= Math.max(max, map[i][diff]);
+            }
+        }
+        
+        return max+1;
+    }
+}
