@@ -35,3 +35,26 @@ class Solution {
         
     }
 }
+
+
+// I did it again: 
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        int len= 0;
+        ListNode temp= head, saved= head;
+        while(temp!= null) { temp= temp.next; len++; }
+        
+        if(len== 0) return head;
+        k= k%len; temp= head;
+        int count= 0;
+        if(k== 0) return head;
+        while(count!= len-k-1) { temp= temp.next; count++; }
+        
+        head= temp.next;
+        temp.next= null;
+        temp= head;
+        while(temp.next!= null) temp= temp.next;
+        temp.next= saved;
+        return head;
+    }
+}
