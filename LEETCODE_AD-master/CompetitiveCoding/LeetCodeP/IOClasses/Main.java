@@ -1,7 +1,8 @@
 package LeetCodeP.IOClasses;
 
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static class FastIO {
@@ -68,6 +69,24 @@ public class Main {
 class Solution{
     public void helperFunction(Main.FastIO fastIO){
         //solution goes here
+        String fullLine = fastIO.nextLine();
+        var inputString = fullLine.split(" ");
+        Arrays.sort(inputString);//nlogn
+        Integer length = inputString.length;
+        StringBuilder prefixString = new StringBuilder();
+        int firstStringLength = inputString[0].length();// FLOWER FLOW
+        //O(n2)
+        var firstString = inputString[0];
+        var lastString = inputString[length-1];
+        var minimum = Math.min(firstString.length() , lastString.length());
+        for(int i=0; i< firstStringLength ;i++){
+            if(firstString.charAt(i) == lastString.charAt(i));
+            else
+            {
+                break;
+            }
+
+        }
 
     }
 }
