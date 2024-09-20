@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class CodeCombiner {
+public class CodeCombiner { // Run with fileNames from pom as argument or in edit Configuration as argument for this file
 
     public static void combine(String sourceFile, String outputFile) throws IOException {
         Path path = Paths.get(sourceFile);
