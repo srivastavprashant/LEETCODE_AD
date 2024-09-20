@@ -1,4 +1,4 @@
-package LeetCodeP.QuestionList;
+package ProblemSolving.QuestionList.LeetCode;
 
 import java.util.Arrays;
 import java.util.Scanner;

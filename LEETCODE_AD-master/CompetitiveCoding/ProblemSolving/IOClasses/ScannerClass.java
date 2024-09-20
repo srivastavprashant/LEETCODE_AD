@@ -1,4 +1,4 @@
-package LeetCodeP.IOClasses;
+package ProblemSolving.IOClasses;
 
 import java.util.Scanner;
 

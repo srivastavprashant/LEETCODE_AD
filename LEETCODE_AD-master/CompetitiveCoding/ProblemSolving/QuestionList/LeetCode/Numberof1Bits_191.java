@@ -1,4 +1,4 @@
-package LeetCodeP.QuestionList;
+package ProblemSolving.QuestionList.LeetCode;
 
 //Question Link
 //https://leetcode.com/problems/number-of-1-bits/description/
