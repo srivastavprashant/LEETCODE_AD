@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.math.*;
 import java.lang.*;
+import java.nio.file.*;
 
 
 
@@ -20,20 +21,7 @@ abstract class ProblemSolver {
     protected static FastIO io;
 
     static {
-        boolean ifPresentOnlineJudgeProperty = System.getProperties().containsKey("ONLINE_JUDGE"); //For Codeforces
-        if(ifPresentOnlineJudgeProperty) {
             io = new FastIO();
-        } else if (Objects.equals(System.getProperty("user.name"), "sriva")) { //For Local
-            try {
-                String resourcePath = "src/main/resources/";
-                io = new FastIO(resourcePath + "input.txt", resourcePath + "output.txt");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else { //For Else
-            io = new FastIO();
-        }
     }
 
 
