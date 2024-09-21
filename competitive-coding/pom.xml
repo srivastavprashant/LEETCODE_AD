@@ -74,7 +74,7 @@
                         <argument>
                             ${project.basedir}/src/main/java/com/competitivecoding/competitive_coding/leetcode/TwoSum.java
                         </argument>
-                        <argument>${project.build.directory}/TwoSumCombined.java</argument>
+                        <argument>${project.build.directory}/TwoSum.java</argument>
                     </arguments>
                 </configuration>
             </plugin>
