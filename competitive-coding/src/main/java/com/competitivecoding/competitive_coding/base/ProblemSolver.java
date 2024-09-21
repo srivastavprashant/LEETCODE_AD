@@ -1,12 +1,10 @@
 package com.competitivecoding.competitive_coding.base;
 
 import com.competitivecoding.competitive_coding.util.FastIO;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Objects;
 
-@Component
 public abstract class ProblemSolver {
     protected static FastIO io;
 

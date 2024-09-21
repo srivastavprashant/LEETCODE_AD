@@ -1,14 +1,12 @@
 package com.competitivecoding.competitive_coding.codeforces;
 
 
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import com.competitivecoding.competitive_coding.base.ProblemSolver;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 public class TwoSum extends ProblemSolver {
 
     @Override

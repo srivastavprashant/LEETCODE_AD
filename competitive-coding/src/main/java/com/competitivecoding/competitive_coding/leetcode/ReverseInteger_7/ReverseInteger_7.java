@@ -1,4 +1,4 @@
-package com.competitivecoding.competitive_coding.leetcode;
+package com.competitivecoding.competitive_coding.leetcode.ReverseInteger_7;
 
 import com.competitivecoding.competitive_coding.base.ProblemSolver;
 
