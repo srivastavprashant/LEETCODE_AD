@@ -3,7 +3,7 @@ package com.competitivecoding.competitive_coding.base;
 import com.competitivecoding.competitive_coding.util.FastIO;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class ProblemSolver {
     protected static FastIO io;
