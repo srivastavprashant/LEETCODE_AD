@@ -14,7 +14,7 @@ public abstract class ProblemSolver {
             io = new FastIO();
         } else if (Objects.equals(System.getProperty("user.name"), "sriva")) { //For Local
             try {
-                String resourcePath = "src/main/resources/";
+                String resourcePath = "competitive-coding/src/main/resources/";
                 io = new FastIO(resourcePath + "input.txt", resourcePath + "output.txt");
             } catch (IOException e) {
                 e.printStackTrace();
